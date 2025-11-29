@@ -26,9 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (toggle_col_info) {
     toggle_col_info.addEventListener("click", () => {
-      document.querySelectorAll(".col-info").forEach((el) => {
-        el.classList.toggle("hidden");
-      });
+      console.log("toggle ge-column-info");
+      body.classList.toggle("ge-column-info");
     });
   }
 });
