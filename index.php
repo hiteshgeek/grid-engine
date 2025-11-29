@@ -24,7 +24,7 @@ include_once __DIR__ . '/includes/functions.php';
 <body class=''>
       <div id="grid_demo">
             <div class="tabs-wrapper grid-group-tabs">
-                  <div class="tabs tabs-underline" id="grid_tabs">
+                  <div class="tabs tabs-minimal" id="grid_tabs">
                         <button class="active" data-tab="even_columns">Even Columns<span class="badge">5</span></button>
                         <button data-tab="uneven_columns">Uneven Columns<span class="badge">5</span></button>
                         <button data-tab="split_columns">Split Columns<span class="badge">5</span></button>

@@ -3,14 +3,13 @@
    =============================================== */
 
 // Variables
-$tab-primary-color: #2563eb;
 $tab-hover-bg: rgba(37, 99, 235, 0.08);
-$tab-active-bg: rgba(37, 99, 235, 0.12);
-$tab-border-radius: 8px;
+$tab-active-bg: #083f5b;
+$tab-border-radius: 6px;
 $tab-transition: none;
 /*all 0.25s cubic-bezier(0.4, 0, 0.2, 1);*/
 
-/* ---------- Tab Wrapper ---------- */
+/* ------ Tab Wrapper ------ */
 .tabs-wrapper {
   display: flex;
   flex-direction: column;
@@ -28,7 +27,7 @@ $tab-transition: none;
   }
 }
 
-/* ---------- Tab Navigation Styles ---------- */
+/* ------ Tab Navigation Styles ------ */
 .tabs {
   display: flex;
   position: relative;
@@ -53,13 +52,13 @@ $tab-transition: none;
       }
 
       &.active {
-        color: $tab-primary-color;
-        border-bottom-color: $tab-primary-color;
+        color: var(--ge-primary-color);
+        border-bottom-color: var(--ge-primary-color);
         // font-weight: 600;
       }
 
       &:focus-visible {
-        outline: 2px solid $tab-primary-color;
+        outline: 2px solid var(--ge-primary-color);
         outline-offset: -2px;
         background: rgba(37, 99, 235, 0.05);
       }
@@ -88,13 +87,13 @@ $tab-transition: none;
 
       &.active {
         color: #fff;
-        background: $tab-primary-color;
+        background: var(--ge-primary-color);
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        font-weight: 500;
+        // font-weight: 500;
       }
 
       &:focus-visible {
-        box-shadow: 0 0 0 2px $tab-primary-color;
+        box-shadow: 0 0 0 2px var(--ge-primary-color);
         outline: none;
       }
     }
@@ -120,13 +119,13 @@ $tab-transition: none;
 
       &.active {
         color: #fff;
-        background: $tab-primary-color;
-        border-color: $tab-primary-color;
+        background: var(--ge-primary-color);
+        border-color: var(--ge-primary-color);
         box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
       }
 
       &:focus-visible {
-        box-shadow: 0 0 0 2px $tab-primary-color;
+        box-shadow: 0 0 0 2px var(--ge-primary-color);
         outline: none;
       }
     }
@@ -135,28 +134,35 @@ $tab-transition: none;
   // Minimal Style (No borders)
   &.tabs-minimal {
     gap: 0.25rem;
+    // padding-bottom: 10px;
+    // border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 
     button {
-      padding: 0.75rem 1rem;
+      padding: 0.5rem 1rem;
       background: transparent;
       border: none;
       border-radius: $tab-border-radius;
       color: #6b7280;
       transition: $tab-transition;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
 
       &:hover:not(.active):not(:disabled) {
-        color: #374151;
-        background: $tab-hover-bg;
+        color: var(--ge-active-bg);
+        background: color-mix(in srgb, var(--ge-primary-color) 40%, #fff);
       }
 
       &.active {
-        color: $tab-primary-color;
-        background: $tab-active-bg;
-        font-weight: 500;
+        color: $tab-active-bg;
+        background: var(--ge-primary-color);
+        // font-weight: 500;
       }
 
       &:focus-visible {
-        box-shadow: 0 0 0 2px $tab-primary-color inset;
+        box-shadow: 0 0 0 2px var(--ge-primary-color) inset;
         outline: none;
       }
     }
@@ -187,12 +193,12 @@ $tab-transition: none;
         }
 
         &.active {
-          border-right-color: $tab-primary-color;
+          border-right-color: var(--ge-primary-color);
           transition: none; // Instant transition for active state
         }
 
         &:focus-visible {
-          outline: 2px solid $tab-primary-color;
+          outline: 2px solid var(--ge-primary-color);
           outline-offset: -2px;
           background: rgba(37, 99, 235, 0.05);
         }
@@ -210,10 +216,10 @@ $tab-transition: none;
   }
 }
 
-/* ---------- Tab Buttons Base Styles ---------- */
+/* ------ Tab Buttons Base Styles ------ */
 .tabs button {
-  font-size: 0.9375rem;
-  font-weight: 500;
+  font-size: 0.85rem;
+  font-weight: 600;
   cursor: pointer;
   position: relative;
   white-space: nowrap;
@@ -226,9 +232,9 @@ $tab-transition: none;
   }
 
   &:focus-visible {
-    outline: 2px solid $tab-primary-color;
+    outline: 2px solid var(--ge-primary-color);
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: var($tab-border-radius);
     z-index: 1;
   }
 
@@ -254,23 +260,21 @@ $tab-transition: none;
   // Badge support
   .badge {
     display: inline-block;
-    margin-left: 0.5rem;
     padding: 0.125rem 0.5rem;
     background: #e5e7eb;
     color: #6b7280;
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 600;
-    line-height: 1.25;
   }
 
   &.active .badge {
-    background: rgba(37, 99, 235, 0.15);
-    color: $tab-primary-color;
+    background: color-mix(in srgb, var(--ge-primary-color) 40%, #000);
+    color: var(--ge-primary-color);
   }
 }
 
-/* ---------- Tab Content Panels ---------- */
+/* ------ Tab Content Panels ------ */
 .tab-content {
   width: 100%;
   position: relative;
@@ -317,7 +321,7 @@ $tab-transition: none;
   }
 }
 
-/* ---------- Loading State ---------- */
+/* ------ Loading State ------ */
 .tabs button.loading {
   position: relative;
   pointer-events: none;
@@ -341,7 +345,7 @@ $tab-transition: none;
   }
 }
 
-/* ---------- Mobile Responsive ---------- */
+/* ------ Mobile Responsive ------ */
 @media (max-width: 768px) {
   .tabs {
     &:not(.tabs-vertical) {
@@ -378,7 +382,7 @@ $tab-transition: none;
 
           &.active {
             border-right: none;
-            border-bottom-color: $tab-primary-color;
+            border-bottom-color: var(--ge-primary-color);
           }
         }
       }
@@ -386,7 +390,7 @@ $tab-transition: none;
   }
 }
 
-/* ---------- Dark Mode Support ---------- */
+/* ------ Dark Mode Support ------ */
 @media (prefers-color-scheme: dark) {
   .tabs-wrapper {
     &[data-theme="dark"],
