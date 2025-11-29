@@ -1,16 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
 :root {
   --preview-row-gap: 15px;
   --preview-gap: 7px;
   --preview-row-height: 120px;
+  --ge-primary-color: #c0eaff;
 }
 
 body {
   padding: 0;
   margin: 0;
+  font-family: "Lato", sans-serif;
 }
 
 #debug_buttons {
-  position: absolute;
+  position: fixed;
   bottom: 10px;
   right: 10px;
 }
@@ -43,5 +47,38 @@ body {
     padding: var(--preview-gap, 10px);
     border: 1px solid #ddd;
     border-radius: 10px;
+  }
+}
+
+div#grid_demo {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.grid-group-tabs {
+  width: 70vw !important;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 15px;
+}
+
+.ge-container > .ge-row {
+  > .ge-col,
+  > [class^="ge-col-"],
+  > [class*=" ge-col-"] {
+    &:hover {
+      background-color: color-mix(
+        in srgb,
+        var(--ge-primary-color) 40%,
+        transparent
+      );
+
+      .ge-col,
+      [class^="ge-col-"],
+      [class*=" ge-col-"] {
+        background-color: var(--ge-primary-color, #c0eaff);
+      }
+    }
   }
 }

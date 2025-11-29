@@ -1,0 +1,67 @@
+@use "button_mixins" as *;
+
+.btn {
+  @include button-base;
+  @include ripple-effect;
+
+  // Generate Solid Variants
+  @each $name in primary, secondary, success, danger, warning, info, light, dark
+  {
+    &-#{$name} {
+      @include button-variant($name);
+    }
+  }
+
+  // Generate Outline Variants
+  @each $name in primary, secondary, success, danger, warning, info, light, dark
+  {
+    &-outline-#{$name} {
+      @include button-outline($name);
+    }
+  }
+
+  // Sizes
+  &-xs {
+    padding: 0.15rem 0.25rem;
+    font-size: 0.65rem;
+  }
+
+  &-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+  }
+  &-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.125rem;
+  }
+  &-block {
+    width: 100%;
+    display: flex;
+  }
+
+  // Icon Button
+  &-icon {
+    padding: 0.5rem;
+    aspect-ratio: 1 / 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Disabled
+  &:disabled,
+  &.disabled {
+    opacity: var(--btn-disabled-opacity);
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+.ripple-span {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple-animation 0.6s ease-out;
+  background-color: rgba(255, 255, 255, 0.45);
+  pointer-events: none;
+}

@@ -1,10 +1,14 @@
 import { GridEngineGap } from "./GridEngineGap.js";
+import { enableButtonRipple } from "./button.js";
+
 export default class GridEngine {
   constructor(options = {}) {
     this.options = {
       enableGapEngine: true,
       ...options,
     };
+
+    enableButtonRipple();
 
     // Initialize gap engine
     if (this.options.enableGapEngine) {

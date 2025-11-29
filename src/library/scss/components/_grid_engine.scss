@@ -155,7 +155,8 @@ $base-col-height: 100px;
 /* ======================================================
    Extra Info Mode (Colors + Labels)
 ====================================================== */
-.ge-extra-info {
+
+.ge-color-info {
   .ge-col::before,
   [class^="ge-col-"]::before,
   [class*=" ge-col-"]::before {
@@ -184,12 +185,44 @@ $base-col-height: 100px;
       )
   {
     @include ge-media($bp) {
-      .ge-col,
-      [class^="ge-col"],
-      [class*=" ge-col"] {
+      .ge-col:not(:has(.ge-row)),
+      [class^="ge-col"]:not(:has(.ge-row)),
+      [class*=" ge-col"]:not(:has(.ge-row)) {
         background-color: $color !important;
       }
+    }
+  }
+}
 
+.ge-breakpoint-info {
+  .ge-col::before,
+  [class^="ge-col-"]::before,
+  [class*=" ge-col-"]::before {
+    position: absolute;
+    bottom: 4px;
+    right: 6px;
+    font-size: 12px;
+    background: #222;
+    color: white;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  @each $bp,
+    $color
+      in (
+        xxl: #b9fbc0,
+        xl: #a0c4ff,
+        lg: #bdb2ff,
+        md: #ffd6a5,
+        sm: #ffc6ff,
+        xs: #ffadad
+      )
+  {
+    @include ge-media($bp) {
       .ge-col::before,
       [class^="ge-col-"]::before,
       [class*=" ge-col-"]::before {

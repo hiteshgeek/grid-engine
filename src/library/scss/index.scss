@@ -1,6 +1,11 @@
 // Base
 @use "variables";
 @use "mixins" as *;
+@use "button_mixins" as *;
 @use "base";
+@use "utilities";
+
+@use "components/buttons";
+@use "components/tabs";
 
 @use "components/grid_engine";

@@ -1,0 +1,442 @@
+/* ===============================================
+   Modern Minimalistic Tabs
+   =============================================== */
+
+// Variables
+$tab-primary-color: #2563eb;
+$tab-hover-bg: rgba(37, 99, 235, 0.08);
+$tab-active-bg: rgba(37, 99, 235, 0.12);
+$tab-border-radius: 8px;
+$tab-transition: none;
+/*all 0.25s cubic-bezier(0.4, 0, 0.2, 1);*/
+
+/* ---------- Tab Wrapper ---------- */
+.tabs-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &.tabs-vertical {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: flex-start;
+
+    .tab-content {
+      flex: 1;
+      min-width: 0;
+    }
+  }
+}
+
+/* ---------- Tab Navigation Styles ---------- */
+.tabs {
+  display: flex;
+  position: relative;
+  isolation: isolate;
+
+  // Default: Underline Style (Horizontal)
+  &.tabs-underline {
+    gap: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+    button {
+      padding: 0.5rem 1rem;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: #6b7280;
+      transition: $tab-transition;
+
+      &:hover:not(.active):not(:disabled) {
+        color: #374151;
+        border-bottom-color: rgba(37, 99, 235, 0.2);
+      }
+
+      &.active {
+        color: $tab-primary-color;
+        border-bottom-color: $tab-primary-color;
+        // font-weight: 600;
+      }
+
+      &:focus-visible {
+        outline: 2px solid $tab-primary-color;
+        outline-offset: -2px;
+        background: rgba(37, 99, 235, 0.05);
+      }
+    }
+  }
+
+  // Pills Style
+  &.tabs-pills {
+    gap: 0.5rem;
+    padding: 0.25rem;
+    background: #f3f4f6;
+    border-radius: $tab-border-radius;
+
+    button {
+      padding: 0.625rem 1rem;
+      background: transparent;
+      border: none;
+      border-radius: calc($tab-border-radius - 2px);
+      color: #6b7280;
+      transition: $tab-transition;
+
+      &:hover:not(.active):not(:disabled) {
+        color: #374151;
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      &.active {
+        color: #fff;
+        background: $tab-primary-color;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        font-weight: 500;
+      }
+
+      &:focus-visible {
+        box-shadow: 0 0 0 2px $tab-primary-color;
+        outline: none;
+      }
+    }
+  }
+
+  // Boxed Style
+  &.tabs-boxed {
+    gap: 0.5rem;
+    flex-wrap: wrap;
+
+    button {
+      padding: 0.625rem 1rem;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: $tab-border-radius;
+      color: #6b7280;
+      transition: $tab-transition;
+
+      &:hover:not(.active):not(:disabled) {
+        border-color: #d1d5db;
+        color: #374151;
+      }
+
+      &.active {
+        color: #fff;
+        background: $tab-primary-color;
+        border-color: $tab-primary-color;
+        box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+      }
+
+      &:focus-visible {
+        box-shadow: 0 0 0 2px $tab-primary-color;
+        outline: none;
+      }
+    }
+  }
+
+  // Minimal Style (No borders)
+  &.tabs-minimal {
+    gap: 0.25rem;
+
+    button {
+      padding: 0.75rem 1rem;
+      background: transparent;
+      border: none;
+      border-radius: $tab-border-radius;
+      color: #6b7280;
+      transition: $tab-transition;
+
+      &:hover:not(.active):not(:disabled) {
+        color: #374151;
+        background: $tab-hover-bg;
+      }
+
+      &.active {
+        color: $tab-primary-color;
+        background: $tab-active-bg;
+        font-weight: 500;
+      }
+
+      &:focus-visible {
+        box-shadow: 0 0 0 2px $tab-primary-color inset;
+        outline: none;
+      }
+    }
+  }
+
+  // Vertical Variants
+  &.tabs-vertical {
+    flex-direction: column;
+    min-width: 200px;
+    max-width: 250px;
+    flex-shrink: 0;
+
+    &.tabs-underline {
+      border-bottom: none;
+      border-right: 1px solid rgba(0, 0, 0, 0.08);
+      padding-right: 0.5rem;
+
+      button {
+        border-bottom: none;
+        border-right: 2px solid transparent;
+        text-align: left;
+        justify-content: flex-start;
+        transition: color 0.15s ease, border-color 0.15s ease,
+          background 0.15s ease;
+
+        &:hover:not(.active):not(:disabled) {
+          border-right-color: rgba(37, 99, 235, 0.2);
+        }
+
+        &.active {
+          border-right-color: $tab-primary-color;
+          transition: none; // Instant transition for active state
+        }
+
+        &:focus-visible {
+          outline: 2px solid $tab-primary-color;
+          outline-offset: -2px;
+          background: rgba(37, 99, 235, 0.05);
+        }
+      }
+    }
+
+    &.tabs-pills,
+    &.tabs-boxed,
+    &.tabs-minimal {
+      button {
+        text-align: left;
+        justify-content: flex-start;
+      }
+    }
+  }
+}
+
+/* ---------- Tab Buttons Base Styles ---------- */
+.tabs button {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  outline: none;
+  user-select: none;
+  transition: color 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $tab-primary-color;
+    outline-offset: 2px;
+    border-radius: 4px;
+    z-index: 1;
+  }
+
+  &.active {
+    transition: none; // Override transition for instant active state change
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // Icon support
+  svg,
+  i {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 0.5rem;
+    font-size: 1.125rem;
+  }
+
+  // Badge support
+  .badge {
+    display: inline-block;
+    margin-left: 0.5rem;
+    padding: 0.125rem 0.5rem;
+    background: #e5e7eb;
+    color: #6b7280;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  &.active .badge {
+    background: rgba(37, 99, 235, 0.15);
+    color: $tab-primary-color;
+  }
+}
+
+/* ---------- Tab Content Panels ---------- */
+.tab-content {
+  width: 100%;
+  position: relative;
+}
+
+.tab-panel {
+  display: none;
+  animation: fadeIn 0.3s ease-in-out;
+
+  &.active {
+    display: block;
+  }
+
+  &.tab-panel-fade {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+
+    &.active {
+      opacity: 1;
+    }
+  }
+
+  &.tab-panel-slide {
+    transform: translateX(20px);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+    &.active {
+      transform: translateX(0);
+    }
+  }
+}
+
+/* Remove extra padding in vertical layout */
+.tabs-wrapper.tabs-vertical .tab-panel {
+  padding: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- Loading State ---------- */
+.tabs button.loading {
+  position: relative;
+  pointer-events: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    margin-left: 8px;
+    border: 2px solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---------- Mobile Responsive ---------- */
+@media (max-width: 768px) {
+  .tabs {
+    &:not(.tabs-vertical) {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    button {
+      flex-shrink: 0;
+    }
+  }
+
+  .tabs-wrapper.tabs-vertical {
+    flex-direction: column;
+
+    .tabs.tabs-vertical {
+      flex-direction: row;
+      overflow-x: auto;
+      min-width: auto;
+
+      &.tabs-underline {
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+        button {
+          border-right: none;
+          border-bottom: 2px solid transparent;
+
+          &.active {
+            border-right: none;
+            border-bottom-color: $tab-primary-color;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* ---------- Dark Mode Support ---------- */
+@media (prefers-color-scheme: dark) {
+  .tabs-wrapper {
+    &[data-theme="dark"],
+    .dark & {
+      .tabs {
+        &.tabs-underline {
+          border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        &.tabs-pills {
+          background: #1f2937;
+
+          button.active {
+            background: #374151;
+          }
+        }
+
+        &.tabs-boxed {
+          button {
+            background: #1f2937;
+            border-color: #374151;
+
+            &:hover:not(.active) {
+              border-color: #4b5563;
+            }
+          }
+        }
+
+        button {
+          color: #9ca3af;
+
+          &:hover:not(.active) {
+            color: #d1d5db;
+          }
+
+          &.active {
+            color: #60a5fa;
+          }
+
+          .badge {
+            background: #374151;
+            color: #9ca3af;
+          }
+
+          &.active .badge {
+            background: rgba(96, 165, 250, 0.2);
+            color: #60a5fa;
+          }
+        }
+      }
+    }
+  }
+}
