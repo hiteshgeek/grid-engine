@@ -1,4 +1,4 @@
-export default function enableButtonRipple(selector = ".btn") {
+export default function enableButtonRipple(selector = ".ge-btn") {
   document.addEventListener("click", (e) => {
     const button = e.target.closest(selector);
     if (!button) return;

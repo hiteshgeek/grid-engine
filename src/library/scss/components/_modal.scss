@@ -1,0 +1,288 @@
+// _modal.scss
+@use "sass:color";
+
+// Modal Variables
+$modal-backdrop-bg: rgba(0, 0, 0, 0.5);
+$modal-backdrop-opacity: 1;
+$modal-z-index: 1050;
+$modal-backdrop-z-index: 1040;
+$modal-transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+$modal-border-radius: 8px;
+$modal-padding: var(--ge-gap);
+$modal-header-padding: calc(var(--ge-gap) * 0.75) var(--ge-gap);
+$modal-body-padding: var(--ge-gap);
+$modal-footer-padding: calc(var(--ge-gap) * 0.75) var(--ge-gap);
+
+// Color map - use actual color values for SCSS functions
+$theme-colors: (
+  primary: #007bff,
+  secondary: #6c757d,
+  success: #28a745,
+  danger: #dc3545,
+  warning: #ffc107,
+  info: #17a2b8,
+  light: #f8f9fa,
+  dark: #343a40,
+);
+
+// Modal Backdrop
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $modal-backdrop-z-index;
+  width: 100vw;
+  height: 100vh;
+  background-color: $modal-backdrop-bg;
+  opacity: 0;
+  transition: opacity 0.15s linear;
+
+  &.show {
+    opacity: $modal-backdrop-opacity;
+  }
+
+  &.fade {
+    transition: opacity 0.15s linear;
+  }
+}
+
+// Modal Container
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: $modal-z-index;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+
+  &.fade .modal-dialog {
+    transition: $modal-transition;
+    transform: translate(0, -50px);
+    opacity: 0;
+  }
+
+  &.show {
+    display: block;
+
+    .modal-dialog {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
+}
+
+// Modal Dialog
+.modal-dialog {
+  position: relative;
+  width: auto;
+  margin: 1.75rem auto;
+  pointer-events: none;
+  max-width: 500px;
+
+  &.modal-dialog-centered {
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 3.5rem);
+  }
+
+  &.modal-dialog-scrollable {
+    height: calc(100% - 3.5rem);
+
+    .modal-content {
+      max-height: 100%;
+      overflow: hidden;
+    }
+
+    .modal-body {
+      overflow-y: auto;
+    }
+  }
+}
+
+// Modal Sizes
+.modal-sm {
+  max-width: 300px;
+}
+
+.modal-lg {
+  max-width: 800px;
+}
+
+.modal-xl {
+  max-width: 1140px;
+}
+
+.modal-fullscreen {
+  max-width: none;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+
+  .modal-content {
+    height: 100%;
+    border-radius: 0;
+  }
+}
+
+// Modal Content
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  pointer-events: auto;
+  background-color: var(--ge-bg-color);
+  background-clip: padding-box;
+  border-radius: $modal-border-radius;
+  outline: 0;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+// Modal Header
+.modal-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  padding: $modal-header-padding;
+  border-bottom: 1px solid #dee2e6;
+  border-top-left-radius: $modal-border-radius;
+  border-top-right-radius: $modal-border-radius;
+
+  .modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+
+  .btn-close {
+    // margin: calc(var(--ge-gap) * -0.5) calc(var(--ge-gap) * -0.5) calc(var(--ge-gap) * -0.5) auto;
+    // background: transparent
+    //   url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e")
+    //   center/1em auto no-repeat;
+    border: 0;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+
+    &:hover,
+    &:focus {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    &:active {
+      background: rgba(0, 0, 0, 0.5);
+      transform: scale(0.95);
+    }
+
+    svg {
+      width: 12px;
+      height: 12px;
+      fill: #fff;
+    }
+  }
+}
+
+// Modal Body
+.modal-body {
+  position: relative;
+  flex: 1 1 auto;
+  padding: $modal-body-padding;
+}
+
+// Modal Footer
+.modal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: flex-end;
+  padding: $modal-footer-padding;
+  border-top: 1px solid #dee2e6;
+  border-bottom-right-radius: $modal-border-radius;
+  border-bottom-left-radius: $modal-border-radius;
+  gap: calc(var(--ge-gap) * 0.5);
+
+  > * {
+    margin: 0;
+  }
+}
+
+// Contextual Header Classes
+@each $name, $color in $theme-colors {
+  .modal-header-#{$name} {
+    background-color: var(--#{$name});
+    color: var(--#{$name}-text);
+
+    // Use CSS filter for darker border instead of SCSS color functions
+    border-bottom: 1px solid var(--#{$name});
+    filter: brightness(0.95);
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+
+    .modal-title {
+      color: var(--#{$name}-text);
+    }
+
+    // .btn-close {
+    //   @if $name == light or $name == warning {
+    //     // Dark close button for light backgrounds
+    //     background: transparent
+    //       url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e")
+    //       center/1em
+    //       auto
+    //       no-repeat;
+    //   } @else {
+    //     // White close button for dark backgrounds
+    //     background: transparent
+    //       url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23fff'%3e%3cpath d='M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z'/%3e%3c/svg%3e")
+    //       center/1em
+    //       auto
+    //       no-repeat;
+    //   }
+    // }
+  }
+}
+
+// Override with actual calculated border colors using modern color functions
+// This uses the actual color values from the map with color.adjust()
+@each $name, $color in $theme-colors {
+  .modal-header-#{$name} {
+    border-bottom-color: color.adjust($color, $lightness: -10%);
+    filter: none;
+  }
+}
+
+// Responsive
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 500px;
+    margin: 1.75rem auto;
+  }
+
+  .modal-sm {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+  .modal-lg,
+  .modal-xl {
+    max-width: 800px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal-xl {
+    max-width: 1140px;
+  }
+}

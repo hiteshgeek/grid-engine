@@ -1,6 +1,6 @@
 @use "button_mixins" as *;
 
-.btn {
+.ge-btn {
   @include button-base;
   @include ripple-effect;
 

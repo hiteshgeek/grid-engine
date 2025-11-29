@@ -1,6 +1,36 @@
 if (typeof window !== "undefined") {
-  const gri_engine = new GridEngine();
-  window.gri_engine = gri_engine;
+  const grid_engine = new GridEngine();
+  window.grid_engine = grid_engine;
+
+  Modal.initializeDataAPI();
+
+  const toggle_grid_edit = document.querySelector("#toggle_grid_edit");
+  const body = document.querySelector("body");
+
+  if (toggle_grid_edit) {
+    toggle_grid_edit.addEventListener("click", () => {
+      createGridEditModal();
+    });
+  }
+
+  // Example: Listen to events
+  // document.getElementById("basicModal").addEventListener("shown.modal", (e) => {
+  //   console.log("Modal shown!", e.detail);
+  // });
+
+  // document.getElementById("basicModal").addEventListener("show.modal", (e) => {
+  //   console.log("Modal showing!", e.detail);
+  // });
+
+  // document
+  //   .getElementById("basicModal")
+  //   .addEventListener("hidden.modal", (e) => {
+  //     console.log("Modal hidden!", e.detail);
+  //   });
+
+  // document.getElementById("basicModal").addEventListener("hide.modal", (e) => {
+  //   console.log("Modal hiding!", e.detail);
+  // });
   // new Tabs('[data-tab-group="example1"]', {
   //   onTabChange: (id, index) => {
   //     console.log(`Switched to: ${id} (Index: ${index})`);
@@ -56,3 +86,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+function createGridEditModal() {
+  Modal.confirm({
+    title: "Create new layout",
+    message: "This will make changes to your account.",
+    type: "primary",
+    confirmLabel: "Save",
+    cancelLabel: "Close",
+    onConfirm: () => {
+      confirmResult.style.display = "block";
+      confirmResult.textContent = "✓ Action completed";
+    },
+  }).show();
+}
