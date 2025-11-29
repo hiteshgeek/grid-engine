@@ -1,3 +1,9 @@
+:root {
+  --preview-row-gap: 15px;
+  --preview-gap: 7px;
+  --preview-row-height: 120px;
+}
+
 body {
   padding: 0;
   margin: 0;
@@ -14,10 +20,28 @@ body {
 }
 
 .ge-preview {
+  & > .ge-row {
+    min-height: var(--preview-row-height, 120px);
+  }
+
+  .ge-row {
+    gap: var(--preview-row-gap, 10px);
+  }
+
+  [class^="ge-col-"] .ge-row,
+  [class^="ge-col-"]:has(.ge-row > [class^="ge-col-"]) {
+    gap: var(--preview-gap, 10px);
+  }
+
   /* Apply background ONLY to columns that do NOT have another .ge-row inside */
   [class^="ge-col-"]:not(:has(.ge-row)) {
     background-color: #efefef;
-    border: 1px solid #ddd;
     border-radius: 4px;
+  }
+
+  [class^="ge-col-"]:has(.ge-row) {
+    padding: var(--preview-gap, 10px);
+    border: 1px solid #ddd;
+    border-radius: 10px;
   }
 }

@@ -1,0 +1,51 @@
+@use "sass:map";
+@use "variables" as *;
+
+/* ===============================
+   Media Query Mixin
+   =============================== */
+@mixin ge-media($size) {
+  @if map.has-key($breakpoints, $size) {
+    @media (max-width: map.get($breakpoints, $size)) {
+      @content;
+    }
+  }
+}
+
+/* ===============================
+   Min-Width Media Query Mixin
+   =============================== */
+@mixin ge-media-min($size) {
+  @if map.has-key($breakpoints, $size) {
+    @media (min-width: map.get($breakpoints, $size)) {
+      @content;
+    }
+  }
+}
+
+/* ===============================
+   Shadow Mixin
+   =============================== */
+@mixin ge-shadow {
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* ===============================
+   Shadow Variations
+   =============================== */
+@mixin ge-shadow-sm {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px;
+}
+
+@mixin ge-shadow-lg {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 8px 16px;
+}
+
+/* ===============================
+   Flex Center Mixin
+   =============================== */
+@mixin ge-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -1,0 +1,397 @@
+/* ===============================
+   Core Imports
+   =============================== */
+@use "sass:map";
+@use "mixins" as *;
+@use "variables" as *;
+
+/* ===============================
+   Wrapper (Optional Outer Layer)
+   =============================== */
+.ge-wrapper {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* ===============================
+   Main Grid Container
+   =============================== */
+.ge-container {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 15px;
+  row-gap: var(--ge-row-gap, 16px);
+
+  @each $bp, $max-width in $container-max-widths {
+    @include ge-media-min($bp) {
+      max-width: $max-width;
+    }
+  }
+}
+
+.ge-container-fluid {
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  padding: 15px;
+  row-gap: var(--ge-row-gap, 16px);
+}
+
+/* ===============================
+   Main Row Behavior
+   =============================== */
+.ge-row {
+  display: grid;
+  grid-template-columns: repeat($grid-columns, minmax(0, 1fr));
+  gap: var(--ge-gap, 16px);
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* ===============================
+   Universal Nested Grid Support
+   =============================== */
+.ge-col .ge-row,
+[class^="ge-col-"] .ge-row,
+[class*=" ge-col-"] .ge-row {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  position: relative;
+  gap: var(--ge-gap, 16px);
+  grid-template-columns: repeat($grid-columns, minmax(0, 1fr));
+}
+
+/* Enable subgrid for modern browsers */
+@supports (grid-template-columns: subgrid) {
+  .ge-col .ge-row,
+  [class^="ge-col-"] .ge-row,
+  [class*=" ge-col-"] .ge-row {
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+  }
+}
+
+.ge-col,
+[class^="ge-col-"],
+[class*=" ge-col-"] {
+  &:has(.ge-row > .ge-col),
+  &:has(.ge-row > [class^="ge-col-"]),
+  &:has(.ge-row > [class*=" ge-col-"]) {
+    display: flex;
+    flex-direction: column;
+    gap: inherit;
+  }
+}
+
+/* ===============================
+   Core Column Behavior
+   =============================== */
+.ge-col,
+[class^="ge-col-"],
+[class*=" ge-col-"] {
+  position: relative;
+  min-height: 20px;
+  min-width: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* ===============================
+   Default Column Spans (Desktop)
+   =============================== */
+@for $i from 1 through $grid-columns {
+  .ge-col-#{$i} {
+    grid-column: span #{$i};
+  }
+}
+
+/* Auto-width column */
+.ge-col-auto {
+  grid-column: auto;
+  flex: 1 1 0;
+}
+
+/* ===============================
+   Responsive Column Spans
+   =============================== */
+@each $bp in (xxl, xl, lg, md, sm, xs) {
+  @include ge-media($bp) {
+    @for $i from 1 through $grid-columns {
+      .ge-col-#{$bp}-#{$i} {
+        grid-column: span #{$i} !important;
+      }
+    }
+
+    .ge-col-#{$bp}-auto {
+      grid-column: auto !important;
+      flex: 1 1 0;
+    }
+  }
+}
+
+/* ===============================
+   Column Offsets
+   =============================== */
+@for $i from 1 through ($grid-columns - 1) {
+  .ge-offset-#{$i} {
+    grid-column-start: #{$i + 1};
+  }
+}
+
+/* Responsive Offsets */
+@each $bp in (xxl, xl, lg, md, sm, xs) {
+  @include ge-media($bp) {
+    @for $i from 0 through ($grid-columns - 1) {
+      .ge-offset-#{$bp}-#{$i} {
+        grid-column-start: #{$i + 1} !important;
+      }
+    }
+  }
+}
+
+/* ===============================
+   Column Order
+   =============================== */
+@for $i from 1 through $grid-columns {
+  .ge-order-#{$i} {
+    order: #{$i};
+  }
+}
+
+.ge-order-first {
+  order: -1;
+}
+
+.ge-order-last {
+  order: 999;
+}
+
+/* Responsive Order */
+@each $bp in (xxl, xl, lg, md, sm, xs) {
+  @include ge-media($bp) {
+    @for $i from 1 through $grid-columns {
+      .ge-order-#{$bp}-#{$i} {
+        order: #{$i} !important;
+      }
+    }
+
+    .ge-order-#{$bp}-first {
+      order: -1 !important;
+    }
+
+    .ge-order-#{$bp}-last {
+      order: 999 !important;
+    }
+  }
+}
+
+/* ===============================
+   Height Utility Classes
+   =============================== */
+@for $i from 1 through 10 {
+  .ge-col-h-#{$i} {
+    min-height: calc(#{$i} * #{$base-col-height});
+  }
+}
+
+/* ===============================
+   Gap Utilities
+   =============================== */
+@each $name, $size in $gap-sizes {
+  .ge-gap-#{$name} {
+    --ge-gap: #{$size};
+  }
+
+  .ge-row-gap-#{$name} {
+    --ge-row-gap: #{$size};
+  }
+
+  .ge-col-gap-#{$name} {
+    --ge-gap: #{$size};
+  }
+}
+
+/* ===============================
+   Alignment Utilities
+   =============================== */
+
+/* Horizontal Alignment (Justify Content) */
+.ge-justify-start {
+  justify-content: flex-start;
+}
+
+.ge-justify-center {
+  justify-content: center;
+}
+
+.ge-justify-end {
+  justify-content: flex-end;
+}
+
+.ge-justify-between {
+  justify-content: space-between;
+}
+
+.ge-justify-around {
+  justify-content: space-around;
+}
+
+.ge-justify-evenly {
+  justify-content: space-evenly;
+}
+
+/* Vertical Alignment (Align Items) */
+.ge-align-start {
+  align-items: flex-start;
+}
+
+.ge-align-center {
+  align-items: center;
+}
+
+.ge-align-end {
+  align-items: flex-end;
+}
+
+.ge-align-stretch {
+  align-items: stretch;
+}
+
+.ge-align-baseline {
+  align-items: baseline;
+}
+
+/* Self Alignment */
+.ge-align-self-start {
+  align-self: flex-start;
+}
+
+.ge-align-self-center {
+  align-self: center;
+}
+
+.ge-align-self-end {
+  align-self: flex-end;
+}
+
+.ge-align-self-stretch {
+  align-self: stretch;
+}
+
+/* ===============================
+   Display Utilities
+   =============================== */
+
+/* Hide at specific breakpoints */
+@each $bp in (xxl, xl, lg, md, sm, xs) {
+  .ge-hidden-#{$bp} {
+    @include ge-media($bp) {
+      display: none !important;
+    }
+  }
+}
+
+/* Show only at specific breakpoints */
+@each $bp in (xxl, xl, lg, md, sm, xs) {
+  .ge-visible-#{$bp} {
+    display: none !important;
+
+    @include ge-media($bp) {
+      display: block !important;
+    }
+  }
+}
+
+/* ===============================
+   Auto-stack at XS
+   =============================== */
+@include ge-media(xs) {
+  .ge-col:not(.ge-col-xs-auto),
+  [class^="ge-col"]:not([class*="ge-col-xs-"]) {
+    grid-column: span $grid-columns;
+  }
+}
+
+/* ===============================
+   DEBUG MODE
+   =============================== */
+.ge-debug {
+  .ge-col,
+  [class^="ge-col"] {
+    border: 1px dashed #ccc;
+    position: relative;
+  }
+
+  .ge-row {
+    border: 2px solid #f00;
+  }
+}
+
+/* Hide info by default, show when enabled */
+.col-info {
+  display: none;
+}
+
+.ge-column-info .col-info {
+  display: inline;
+}
+
+/* ===============================
+   Extra Info Mode (Colors + Labels)
+   =============================== */
+.ge-extra-info {
+  .ge-col::before,
+  [class^="ge-col-"]::before,
+  [class*=" ge-col-"]::before {
+    position: absolute;
+    bottom: 4px;
+    right: 6px;
+    font-size: 12px;
+    background: #222;
+    color: white;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  @each $bp,
+    $color
+      in (
+        xxl: #b9fbc0,
+        xl: #a0c4ff,
+        lg: #bdb2ff,
+        md: #ffd6a5,
+        sm: #ffc6ff,
+        xs: #ffadad
+      )
+  {
+    @include ge-media($bp) {
+      .ge-col,
+      [class^="ge-col"],
+      [class*=" ge-col"] {
+        background-color: $color !important;
+      }
+
+      .ge-col::before,
+      [class^="ge-col-"]::before,
+      [class*=" ge-col-"]::before {
+        content: "#{ge-min-width($bp)} < #{$bp} ≤ #{ge-max-width($bp)}";
+      }
+    }
+  }
+}

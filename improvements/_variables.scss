@@ -1,0 +1,67 @@
+@use "sass:map";
+@use "sass:list";
+
+/* ===============================
+   Breakpoints Map
+   =============================== */
+$breakpoints: (
+  xs: 576px,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1400px,
+  xxl: 1600px,
+);
+
+/* ===============================
+   Container Max-Widths
+   =============================== */
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1320px,
+);
+
+/* ===============================
+   Gap Sizes
+   =============================== */
+$gap-sizes: (
+  none: 0,
+  xs: 4px,
+  sm: 8px,
+  md: 16px,
+  lg: 24px,
+  xl: 32px,
+  xxl: 48px,
+);
+
+/* ===============================
+   Grid Configuration
+   =============================== */
+$grid-columns: 12;
+$base-col-height: 100px;
+
+/* ===============================
+   Helper Functions
+   =============================== */
+
+/* Get MIN width of breakpoint range */
+@function ge-min-width($bp) {
+  @if $bp == xs {
+    @return 0px;
+  }
+  $keys: map.keys($breakpoints);
+  $index: list.index($keys, $bp);
+  @if $index > 1 {
+    $prev: list.nth($keys, $index - 1);
+    @return map.get($breakpoints, $prev);
+  }
+  @return 0px;
+}
+
+/* Get MAX width of breakpoint range */
+@function ge-max-width($bp) {
+  @return map.get($breakpoints, $bp);
+}

@@ -3,6 +3,7 @@
    =============================== */
 @use "sass:map";
 @use "mixins" as *;
+@use "variables" as *;
 
 /* ===============================
    Wrapper (Optional Outer Layer)
@@ -43,6 +44,7 @@
   min-width: 0;
   box-sizing: border-box;
   position: relative;
+  height: 100%;
 }
 
 /* ===============================
@@ -84,7 +86,7 @@
 [class^="ge-col-"],
 [class*=" ge-col-"] {
   position: relative;
-  min-height: 10px;
+  min-height: 20px;
   min-width: 0;
   box-sizing: border-box;
   overflow: hidden;
