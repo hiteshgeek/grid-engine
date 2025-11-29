@@ -20,115 +20,113 @@ include_once __DIR__ . '/includes/functions.php';
 <!--ge-debug ge-extra-info-->
 
 <body class=''>
-      <div class='ge-wrapper ge-preview'>
-            <div class="ge-container">
-                  <div class="ge-row">
+      <div class="ge-container ge-preview">
+            <div class="ge-row">
 
-                        <!-- Left Column -->
-                        <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
-                              <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
-                        </div>
-
-                        <!-- Center Column with Nested Grid -->
-                        <div class="ge-col-6 ge-col-lg-4 ge-col-md-12 ge-col-sm-12">
-                              <small class='col-info'>[Default:6] [lg:4] [md:12] [sm:12]</small>
-                              <div class="ge-row">
-                                    <!-- Nested: Full Width -->
-                                    <div class="ge-col-12 ge-col-lg-12 ge-col-md-12 ge-col-sm-12">
-                                          <small class='col-info'>[Default:12] [lg:12] [md:12] [sm:12]</small>
-                                    </div>
-
-                                    <!-- Nested Column 2 -->
-                                    <div class="ge-col-9 ge-col-md-6 ge-col-sm-12">
-                                          <small class='col-info'>[Default:9] [md:6] [sm:12]</small>
-                                    </div>
-
-                                    <!-- Nested Column 3 -->
-                                    <div class="ge-col-3 ge-col-md-6 ge-col-sm-12">
-                                          <small class='col-info'>[Default:3] [md:6] [sm:12]</small>
-                                    </div>
-
-                              </div>
-                        </div>
-
-                        <!-- Right Column -->
-                        <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
-                              <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
-                        </div>
-
+                  <!-- Left Column -->
+                  <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
+                        <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
                   </div>
 
-                  <div class="ge-row">
-
-                        <!-- Left Column -->
-                        <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
-                              <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
-                        </div>
-
-                        <!-- Center Column with Nested Grid -->
-                        <div class="ge-col-6 ge-col-lg-4 ge-col-md-12 ge-col-sm-12">
-                              <small class='col-info'>[Default:6] [lg:4] [md:12] [sm:12]</small>
-                              <div class="ge-row">
-                                    <!-- Nested: Full Width -->
-                                    <div class="ge-col-12 ge-col-lg-12 ge-col-md-12 ge-col-sm-12">
-                                          <small class='col-info'>[Default:12] [lg:12] [md:12] [sm:12]</small>
-                                    </div>
-
-                                    <!-- Nested Column 2 -->
-                                    <div class="ge-col-9 ge-col-md-6 ge-col-sm-12">
-                                          <small class='col-info'>[Default:9] [md:6] [sm:12]</small>
-                                    </div>
-
-                                    <!-- Nested Column 3 -->
-                                    <div class="ge-col-3 ge-col-md-6 ge-col-sm-12">
-                                          <small class='col-info'>[Default:3] [md:6] [sm:12]</small>
-                                    </div>
-
+                  <!-- Center Column with Nested Grid -->
+                  <div class="ge-col-6 ge-col-lg-4 ge-col-md-12 ge-col-sm-12">
+                        <small class='col-info'>[Default:6] [lg:4] [md:12] [sm:12]</small>
+                        <div class="ge-row">
+                              <!-- Nested: Full Width -->
+                              <div class="ge-col-12 ge-col-lg-12 ge-col-md-12 ge-col-sm-12">
+                                    <small class='col-info'>[Default:12] [lg:12] [md:12] [sm:12]</small>
                               </div>
-                        </div>
 
-                        <!-- Right Column -->
-                        <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
-                              <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
-                        </div>
+                              <!-- Nested Column 2 -->
+                              <div class="ge-col-9 ge-col-md-6 ge-col-sm-12">
+                                    <small class='col-info'>[Default:9] [md:6] [sm:12]</small>
+                              </div>
 
+                              <!-- Nested Column 3 -->
+                              <div class="ge-col-3 ge-col-md-6 ge-col-sm-12">
+                                    <small class='col-info'>[Default:3] [md:6] [sm:12]</small>
+                              </div>
+
+                        </div>
                   </div>
 
-                  <div class="ge-row">
-
-                        <!-- Left Column -->
-                        <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
-                              <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
-                        </div>
-
-                        <!-- Center Column with Nested Grid -->
-                        <div class="ge-col-6 ge-col-lg-4 ge-col-md-12 ge-col-sm-12">
-                              <small class='col-info'>[Default:6] [lg:4] [md:12] [sm:12]</small>
-                              <div class="ge-row">
-                                    <!-- Nested: Full Width -->
-                                    <div class="ge-col-12 ge-col-lg-12 ge-col-md-12 ge-col-sm-12">
-                                          <small class='col-info'>[Default:12] [lg:12] [md:12] [sm:12]</small>
-                                    </div>
-
-                                    <!-- Nested Column 2 -->
-                                    <div class="ge-col-9 ge-col-md-6 ge-col-sm-12">
-                                          <small class='col-info'>[Default:9] [md:6] [sm:12]</small>
-                                    </div>
-
-                                    <!-- Nested Column 3 -->
-                                    <div class="ge-col-3 ge-col-md-6 ge-col-sm-12">
-                                          <small class='col-info'>[Default:3] [md:6] [sm:12]</small>
-                                    </div>
-
-                              </div>
-                        </div>
-
-                        <!-- Right Column -->
-                        <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
-                              <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
-                        </div>
-
+                  <!-- Right Column -->
+                  <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
+                        <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
                   </div>
+
+            </div>
+
+            <div class="ge-row">
+
+                  <!-- Left Column -->
+                  <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
+                        <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
+                  </div>
+
+                  <!-- Center Column with Nested Grid -->
+                  <div class="ge-col-6 ge-col-lg-4 ge-col-md-12 ge-col-sm-12">
+                        <small class='col-info'>[Default:6] [lg:4] [md:12] [sm:12]</small>
+                        <div class="ge-row">
+                              <!-- Nested: Full Width -->
+                              <div class="ge-col-12 ge-col-lg-12 ge-col-md-12 ge-col-sm-12">
+                                    <small class='col-info'>[Default:12] [lg:12] [md:12] [sm:12]</small>
+                              </div>
+
+                              <!-- Nested Column 2 -->
+                              <div class="ge-col-9 ge-col-md-6 ge-col-sm-12">
+                                    <small class='col-info'>[Default:9] [md:6] [sm:12]</small>
+                              </div>
+
+                              <!-- Nested Column 3 -->
+                              <div class="ge-col-3 ge-col-md-6 ge-col-sm-12">
+                                    <small class='col-info'>[Default:3] [md:6] [sm:12]</small>
+                              </div>
+
+                        </div>
+                  </div>
+
+                  <!-- Right Column -->
+                  <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
+                        <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
+                  </div>
+
+            </div>
+
+            <div class="ge-row">
+
+                  <!-- Left Column -->
+                  <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
+                        <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
+                  </div>
+
+                  <!-- Center Column with Nested Grid -->
+                  <div class="ge-col-6 ge-col-lg-4 ge-col-md-12 ge-col-sm-12">
+                        <small class='col-info'>[Default:6] [lg:4] [md:12] [sm:12]</small>
+                        <div class="ge-row">
+                              <!-- Nested: Full Width -->
+                              <div class="ge-col-12 ge-col-lg-12 ge-col-md-12 ge-col-sm-12">
+                                    <small class='col-info'>[Default:12] [lg:12] [md:12] [sm:12]</small>
+                              </div>
+
+                              <!-- Nested Column 2 -->
+                              <div class="ge-col-9 ge-col-md-6 ge-col-sm-12">
+                                    <small class='col-info'>[Default:9] [md:6] [sm:12]</small>
+                              </div>
+
+                              <!-- Nested Column 3 -->
+                              <div class="ge-col-3 ge-col-md-6 ge-col-sm-12">
+                                    <small class='col-info'>[Default:3] [md:6] [sm:12]</small>
+                              </div>
+
+                        </div>
+                  </div>
+
+                  <!-- Right Column -->
+                  <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
+                        <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
+                  </div>
+
             </div>
       </div>
 

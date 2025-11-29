@@ -1,19 +1,25 @@
+import { GridEngineGap } from "./GridEngineGap.js";
 export default class GridEngine {
-  constructor(config) {
-    this.config = config;
-    console.log("Grid engine loaded");
+  constructor(options = {}) {
+    this.options = {
+      enableGapEngine: true,
+      ...options,
+    };
+
+    // Initialize gap engine
+    if (this.options.enableGapEngine) {
+      this.gapEngine = new GridEngineGap({
+        containerSelectors: [".ge-container", ".ge-wrapper"],
+        autoInit: true,
+      });
+    }
   }
 
-  generateGridCSS() {
-    const cols = this.config.columns.map((c) => c.width).join(" ");
-    const gap = this.config.container.gap || "0px";
-
-    return `
-      display: grid;
-      grid-template-columns: ${cols};
-      gap: ${gap};
-      max-width: ${this.config.container.maxWidth};
-    `;
+  // Manual method to refresh layout (if DOM changes)
+  refresh() {
+    if (this.gapEngine) {
+      this.gapEngine.refresh();
+    }
   }
 }
 

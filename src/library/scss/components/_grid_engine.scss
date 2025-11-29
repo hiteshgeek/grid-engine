@@ -4,84 +4,47 @@
 @use "sass:map";
 @use "mixins" as *;
 
+/* ===============================
+   Wrapper (Optional Outer Shell)
+   =============================== */
 .ge-wrapper {
-  container-type: inline-size;
-  container-name: ge-wrapper;
-  width: 100px;
-  width: 200px;
-  width: 300px;
-  width: 500px;
-  width: 900px;
   width: 100%;
+  display: block;
+  box-sizing: border-box;
 }
 
 /* ===============================
-   Container - fluid & responsive
+   Container (Fluid + Nested Support)
    =============================== */
 .ge-container {
-  container-type: inline-size;
-  container-name: ge-container;
   display: flex;
   flex-direction: column;
-  row-gap: 16px; // Only vertical spacing between rows
-  overflow-x: hidden; // Prevent overflow issues
+  overflow-x: hidden;
   box-sizing: border-box;
-  gap: 16px;
   width: 100%;
   padding: 15px;
-}
 
-@container ge-wrapper (max-width: 900px) {
-  .ge-container {
-    row-gap: 12px;
-  }
-}
-
-@container ge-wrapper (max-width: 700px) {
-  .ge-container {
-    row-gap: 8px;
-  }
-}
-
-@container ge-wrapper (max-width: 500px) {
-  .ge-container {
-    row-gap: 6px;
-  }
-}
-
-@container ge-wrapper (max-width: 350px) {
-  .ge-container {
-    row-gap: 4px;
-  }
-}
-
-@container ge-wrapper (max-width: 250px) {
-  .ge-container {
-    row-gap: 3px;
-  }
-}
-
-@container ge-wrapper (max-width: 150px) {
-  .ge-container {
-    row-gap: 2px;
-  }
+  /* 💡 Controlled by JS now */
+  row-gap: var(--ge-row-gap, 16px);
 }
 
 /* ===============================
-   Main Row Grid Behavior
+   Main Grid Row
    =============================== */
 .ge-row {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 16px; // Grid gap (horizontal + vertical)
   width: 100%;
-  box-sizing: border-box;
   min-width: 0;
+  box-sizing: border-box;
   position: relative;
+
+  /* 💡 Controlled by JS now */
+  gap: var(--ge-gap, 16px);
 }
 
 /* ===============================
-   Nested Rows - Respect Parent Width & Gap
+   Nested Rows - Subgrid Supported
    =============================== */
 .ge-col .ge-row,
 [class^="ge-col-"] .ge-row,
@@ -91,27 +54,27 @@
     grid-template-columns: subgrid;
     grid-column: 1 / -1;
   }
-  gap: inherit; // 🔥 Inherit gap from parent row
+  gap: var(--ge-gap, 16px);
   min-width: 0;
   box-sizing: border-box;
   position: relative;
 }
 
 /* ===============================
-   Column Core Styling
+   Columns - Core Behavior
    =============================== */
 .ge-col,
 [class^="ge-col-"],
 [class*=" ge-col-"] {
   position: relative;
   min-height: 40px;
-  overflow: hidden;
   min-width: 0;
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* ===============================
-   Column Span Definition
+   Column Span (Default Desktop)
    =============================== */
 @for $i from 1 through 12 {
   .ge-col-#{$i} {
@@ -143,7 +106,7 @@ $base-col-height: 100px;
 }
 
 /* ===============================
-   XS mobile layout (force stack)
+   XS: Force Stack
    =============================== */
 @include ge-media(xs) {
   .ge-col,
@@ -152,111 +115,35 @@ $base-col-height: 100px;
   }
 }
 
-/* ===============================
-   Container-Aware Gap Scaling
-   (Works on nested rows too)
-   =============================== */
-/* Default gap */
-.ge-row,
-.ge-col .ge-row,
-[class^="ge-col-"] .ge-row {
-  gap: 16px; // Default gutter
-}
-
-/* ===============================
-   Container-Aware Gap Scaling
-   =============================== */
-/* ===============================
-   Container-Aware Gap Scaling
-   =============================== */
-.ge-container {
-  /* Default gaps */
-  .ge-row,
-  .ge-col .ge-row,
-  [class^="ge-col-"] .ge-row {
-    gap: 16px;
-  }
-
-  /* Shrink gaps when container is small */
-  @container ge-container (max-width: 900px) {
-    .ge-row,
-    .ge-col .ge-row,
-    [class^="ge-col-"] .ge-row {
-      gap: 12px;
-    }
-  }
-
-  @container ge-container (max-width: 700px) {
-    .ge-row,
-    .ge-col .ge-row,
-    [class^="ge-col-"] .ge-row {
-      gap: 8px;
-    }
-  }
-
-  @container ge-container (max-width: 500px) {
-    .ge-row,
-    .ge-col .ge-row,
-    [class^="ge-col-"] .ge-row {
-      gap: 6px;
-    }
-  }
-
-  @container ge-container (max-width: 350px) {
-    .ge-row,
-    .ge-col .ge-row,
-    [class^="ge-col-"] .ge-row {
-      gap: 4px;
-    }
-  }
-
-  @container ge-container (max-width: 250px) {
-    .ge-row,
-    .ge-col .ge-row,
-    [class^="ge-col-"] .ge-row {
-      gap: 3px;
-    }
-  }
-
-  @container ge-container (max-width: 150px) {
-    .ge-row,
-    .ge-col .ge-row,
-    [class^="ge-col-"] .ge-row {
-      gap: 2px;
-    }
-  }
-}
-
 /* ======================================================
-   DEBUG MODE (Enable with body.ge-debug)
+   DEBUG MODE (Enable with: <body class="ge-debug">)
    ====================================================== */
 .ge-debug {
-  small.col-info {
-    background: rgba(0, 0, 0, 0.3);
+  .ge-col,
+  [class^="ge-col"] {
+    border: 1px dashed #ddd;
   }
 }
 
-/* Hide col-info by default, enable via .ge-column-info */
+/* Hide default labels, show only when .ge-column-info is active */
 .col-info {
   display: none;
 }
-
 .ge-column-info .col-info {
   display: inline;
 }
 
 /* ======================================================
-   Extra Visual Info Mode (Optional: .ge-extra-info)
+   Extra Visual Mode - Debug Colors + Labels
    ====================================================== */
 .ge-extra-info {
-  /* Column Breakpoint Tags */
   .ge-col::before,
   [class^="ge-col-"]::before,
   [class*=" ge-col-"]::before {
     position: absolute;
     bottom: 4px;
     right: 6px;
-    font-size: 15px;
+    font-size: 12px;
     background: #222;
     color: white;
     padding: 3px 6px;
@@ -266,23 +153,6 @@ $base-col-height: 100px;
     z-index: 10;
   }
 
-  /* ROW indicator */
-  .ge-row::before {
-    content: "ROW";
-    position: absolute;
-    top: 4px;
-    right: 6px;
-    font-size: 15px;
-    background: rgba(0, 0, 0, 0.9);
-    color: white;
-    padding: 3px 6px;
-    border-radius: 4px;
-    font-weight: 600;
-    pointer-events: none;
-    z-index: 10;
-  }
-
-  /* Background colors by breakpoint */
   @each $bp,
     $color
       in (
@@ -296,15 +166,14 @@ $base-col-height: 100px;
   {
     @include ge-media($bp) {
       .ge-col,
-      [class^="ge-col-"],
-      [class*=" ge-col-"] {
+      [class^="ge-col"],
+      [class*=" ge-col"] {
         background-color: $color;
       }
 
-      /* Column breakpoint label */
       .ge-col::before,
-      [class^="ge-col-"]::before,
-      [class*=" ge-col-"]::before {
+      [class^="ge-col"],
+      [class*=" ge-col"]::before {
         content: "#{ge-min-width($bp)} < #{$bp} ≤ #{ge-max-width($bp)}";
       }
     }
