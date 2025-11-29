@@ -2,8 +2,8 @@
 
 :root {
   --preview-row-gap: 15px;
-  --preview-gap: 7px;
-  --preview-row-height: 120px;
+  --preview-gap: 6px;
+  --preview-row-height: 150px;
 }
 
 $border: 1px dashed #ddd;
@@ -31,7 +31,7 @@ body {
 
 .ge-preview {
   & > .ge-row {
-    min-height: var(--preview-row-height, 120px);
+    min-height: var(--preview-row-height, 150px);
   }
 
   .ge-row {
@@ -64,7 +64,7 @@ div#grid_demo {
 }
 
 .grid-group-tabs {
-  width: 70vw !important;
+  width: 50vw !important;
   // border: 1px solid #ddd;
   border-radius: 12px;
   // padding: 15px;
@@ -117,4 +117,43 @@ hr.grid-separator {
 
 .tab-panel {
   padding-top: 15px;
+}
+
+.ge-editable {
+  > .ge-row {
+    > .ge-col:hover,
+    > [class^="ge-col-"]:hover,
+    > [class*=" ge-col-"]:hover {
+      > .grid-preview-actions {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+}
+.grid-preview-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+  height: calc(100% - 20px - 3px);
+  width: 50%;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+  > .ge-btn {
+    width: 100%;
+  }
+}
+
+span.grid-name {
+  text-align: center;
+  font-size: 0.85rem;
+  // margin: 5px 0;
 }

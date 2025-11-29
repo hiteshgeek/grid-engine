@@ -5,11 +5,49 @@ if (typeof window !== "undefined") {
   Modal.initializeDataAPI();
 
   const toggle_grid_edit = document.querySelector("#toggle_grid_edit");
-  const body = document.querySelector("body");
+  const ge_container = document.querySelector(".ge-container");
+
+  // <div class="grid-preview-actions">
+  //   <button class="ge-btn ge-btn-sm ge-btn-warning">Edit</button>
+  //   <button class="ge-btn ge-btn-sm ge-btn-danger">Delete</button>
+  // </div>;
+
+  const preview_actions = document.createElement("div");
+  preview_actions.classList.add("grid-preview-actions");
+
+  const edit_button = document.createElement("button");
+  edit_button.classList.add("ge-btn", "ge-btn-sm", "ge-btn-warning");
+  edit_button.textContent = "Edit";
+
+  const delete_button = document.createElement("button");
+  delete_button.classList.add("ge-btn", "ge-btn-sm", "ge-btn-danger");
+  delete_button.textContent = "Delete";
+
+  preview_actions.appendChild(edit_button);
+  preview_actions.appendChild(delete_button);
 
   if (toggle_grid_edit) {
     toggle_grid_edit.addEventListener("click", () => {
-      createGridEditModal();
+      ge_container.classList.toggle("ge-editable");
+      // Add preview actions to each grid item
+      const grid_items = ge_container.querySelectorAll(
+        ".ge-row>.ge-col, .ge-row>[class*='ge-col-'], .ge-row>[class^='ge-col-']"
+      );
+      grid_items.forEach((item) => {
+        if (ge_container.classList.contains("ge-editable")) {
+          // Add actions if not already present
+          if (!item.querySelector(".grid-preview-actions")) {
+            const actions_clone = preview_actions.cloneNode(true);
+            item.appendChild(actions_clone);
+          }
+        } else {
+          // Remove actions
+          const actions = item.querySelector(".grid-preview-actions");
+          if (actions) {
+            actions.remove();
+          }
+        }
+      });
     });
   }
 

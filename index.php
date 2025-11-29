@@ -57,6 +57,7 @@ include_once __DIR__ . '/includes/functions.php';
                                                             <div class="ge-col-2">
                                                             </div>
                                                       </div>
+                                                      <span class='grid-name'>3 Columns</span>
                                                 </div>
                                                 <div class="ge-col-3">
                                                       <div class="ge-row">
@@ -71,37 +72,47 @@ include_once __DIR__ . '/includes/functions.php';
                                                             <div class="ge-col-9"></div>
                                                             <div class="ge-col-3"></div>
                                                       </div>
+                                                      <span class='grid-name'>3 Columns</span>
                                                 </div>
-                                                <div class="ge-col-3"></div>
-                                                <div class="ge-col-3"></div>
+                                                <div class="ge-col-3">
+                                                      <div class="ge-row">
+                                                            <div class="ge-col-12"></div>
+                                                      </div>
+                                                      <span class='grid-name'>3 Columns</span>
+                                                </div>
+                                                <div class="ge-col-3">
+                                                      <div class="ge-row">
+                                                            <div class="ge-col-12"></div>
+                                                      </div>
+                                                      <span class='grid-name'>3 Columns</span>
+                                                </div>
                                           </div>
-                                    </div>
-                                    <div class="tab-panel" id="uneven_columns">
-                                          <h3>Analytics</h3>
-                                          <p>View detailed analytics and insights about your performance metrics.</p>
-                                    </div>
-                                    <div class="tab-panel" id="split_columns">
-                                          <h3>Settings</h3>
-                                          <p>Configure your account preferences and system settings.</p>
+                                          <div class="tab-panel" id="uneven_columns">
+                                                <h3>Analytics</h3>
+                                                <p>View detailed analytics and insights about your performance metrics.</p>
+                                          </div>
+                                          <div class="tab-panel" id="split_columns">
+                                                <h3>Settings</h3>
+                                                <p>Configure your account preferences and system settings.</p>
+                                          </div>
                                     </div>
                               </div>
                         </div>
                   </div>
-            </div>
 
-            <div id='debug_buttons'>
-                  <button class='ge-btn ge-btn-sm ge-btn-primary' id='toggle_debug'>Col</button>
-                  <button class='ge-btn ge-btn-sm ge-btn-primary' id='toggle_color_info'>Color Info</button>
-                  <button class='ge-btn ge-btn-sm ge-btn-primary' id='toggle_breakpoint_info'>Breakpoint Info</button>
-                  <button class='ge-btn ge-btn-sm ge-btn-primary' id='toggle_col_info'>Col Info</button>
-            </div>
+                  <div id='debug_buttons'>
+                        <button class='ge-btn ge-btn-sm ge-btn-primary' id='toggle_debug'>Col</button>
+                        <button class='ge-btn ge-btn-sm ge-btn-primary' id='toggle_color_info'>Color Info</button>
+                        <button class='ge-btn ge-btn-sm ge-btn-primary' id='toggle_breakpoint_info'>Breakpoint Info</button>
+                        <button class='ge-btn ge-btn-sm ge-btn-primary' id='toggle_col_info'>Col Info</button>
+                  </div>
 
 
-            <script type="module" src="<?= asset('grid_engine.js') ?>"></script>
-            <script nomodule src="<?= asset('grid_engine.js', 'nomodule') ?>"></script>
+                  <script type="module" src="<?= asset('grid_engine.js') ?>"></script>
+                  <script nomodule src="<?= asset('grid_engine.js', 'nomodule') ?>"></script>
 
-            <script type="module" src="<?= asset('main.js') ?>"></script>
-            <script nomodule src="<?php echo asset('main.js', 'nomodule'); ?>"></script>
+                  <script type="module" src="<?= asset('main.js') ?>"></script>
+                  <script nomodule src="<?php echo asset('main.js', 'nomodule'); ?>"></script>
 </body>
 
 </html>
