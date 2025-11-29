@@ -334,7 +334,7 @@ export default class Modal {
       title = "",
       content = "",
       headerClass = "",
-      size = "",
+      size = "", // sm, lg, xl, fullscreen
       buttons = [],
       centered = false,
     } = options;
@@ -344,7 +344,16 @@ export default class Modal {
     modal.setAttribute("tabindex", "-1");
     modal.setAttribute("aria-hidden", "true");
 
-    const sizeClass = size ? `modal-${size}` : "";
+    // Handle size classes
+    let sizeClass = "";
+    if (size) {
+      if (size === "fullscreen") {
+        sizeClass = "modal-fullscreen";
+      } else {
+        sizeClass = `modal-${size}`;
+      }
+    }
+
     const centeredClass = centered ? "modal-dialog-centered" : "";
 
     modal.innerHTML = `
@@ -366,9 +375,11 @@ export default class Modal {
               ${buttons
                 .map((btn) => {
                   const dismissAttr = btn.dismiss ? 'data-dismiss="modal"' : "";
-                  return `<button type="button" class="ge-btn ${
-                    btn.className || "ge-btn-primary"
-                  }" ${dismissAttr}>${btn.label || "OK"}</button>`;
+                  const btnClass =
+                    btn.className || btn.class || "ge-btn-primary";
+                  return `<button type="button" class="ge-btn ${btnClass}" ${dismissAttr}>${
+                    btn.label || "OK"
+                  }</button>`;
                 })
                 .join("")}
             </div>
@@ -406,7 +417,10 @@ export default class Modal {
       message = "",
       type = "info", // info, success, warning, danger
       confirmLabel = "OK",
+      confirmClass = "", // Optional custom button class
       onConfirm,
+      size = "", // sm, lg, xl, fullscreen
+      centered = false,
     } = options;
 
     const typeHeaderClass = {
@@ -420,10 +434,12 @@ export default class Modal {
       title,
       content: `<p>${message}</p>`,
       headerClass: typeHeaderClass[type] || "",
+      size,
+      centered,
       buttons: [
         {
           label: confirmLabel,
-          className: `ge-btn ge-btn-${type}`,
+          className: confirmClass || `ge-btn-${type}`,
           dismiss: true,
           onClick: () => {
             if (onConfirm) onConfirm();
@@ -452,8 +468,12 @@ export default class Modal {
       type = "primary",
       confirmLabel = "Confirm",
       cancelLabel = "Cancel",
+      confirmClass = "", // Optional custom button class
+      cancelClass = "", // Optional custom button class
       onConfirm,
       onCancel,
+      size = "", // sm, lg, xl, fullscreen
+      centered = false,
     } = options;
 
     const typeHeaderClass = {
@@ -468,21 +488,23 @@ export default class Modal {
       title,
       content: `<p>${message}</p>`,
       headerClass: typeHeaderClass[type] || "",
+      size,
+      centered,
       buttons: [
         {
-          label: confirmLabel,
-          className: `ge-btn ge-btn-sm ge-btn-${type}`,
-          dismiss: true,
-          onClick: () => {
-            if (onConfirm) onConfirm();
-          },
-        },
-        {
           label: cancelLabel,
-          className: "ge-btn ge-btn-sm ge-btn-secondary",
+          className: cancelClass || "ge-btn-sm ge-btn-secondary",
           dismiss: true,
           onClick: () => {
             if (onCancel) onCancel();
+          },
+        },
+        {
+          label: confirmLabel,
+          className: confirmClass || `ge-btn-sm ge-btn-${type}`,
+          dismiss: true,
+          onClick: () => {
+            if (onConfirm) onConfirm();
           },
         },
       ],
@@ -510,8 +532,12 @@ export default class Modal {
       defaultValue = "",
       confirmLabel = "Submit",
       cancelLabel = "Cancel",
+      confirmClass = "", // Optional custom button class
+      cancelClass = "", // Optional custom button class
       onConfirm,
       onCancel,
+      size = "", // sm, lg, xl, fullscreen
+      centered = false,
     } = options;
 
     const inputId = `modal-prompt-${Date.now()}`;
@@ -528,10 +554,12 @@ export default class Modal {
           <input type="${inputType}" id="${inputId}" class="form-control" placeholder="${placeholder}" value="${defaultValue}">
         </div>
       `,
+      size,
+      centered,
       buttons: [
         {
           label: cancelLabel,
-          className: "ge-btn ge-btn-secondary",
+          className: cancelClass || "ge-btn-secondary",
           dismiss: true,
           onClick: () => {
             if (onCancel) onCancel();
@@ -539,7 +567,7 @@ export default class Modal {
         },
         {
           label: confirmLabel,
-          className: "ge-btn ge-btn-primary",
+          className: confirmClass || "ge-btn-primary",
           dismiss: true,
           onClick: () => {
             const input = modalElement.querySelector(`#${inputId}`);

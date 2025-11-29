@@ -18,8 +18,14 @@
 // Solid Button Variant
 @mixin button-variant($name) {
   background-color: var(--#{$name});
-  color: var(--#{$name}-text);
   border-color: var(--#{$name});
+
+  // Use dark text for warning and light variants
+  @if $name == "warning" or $name == "light" {
+    color: var(--#{$name}-text, var(--dark, #212529));
+  } @else {
+    color: var(--#{$name}-text, #ffffff);
+  }
 
   &:hover,
   &:focus {
@@ -36,7 +42,14 @@
 
   &:hover {
     background-color: var(--#{$name});
-    color: var(--#{$name}-text);
+    border-color: var(--#{$name});
+
+    // Use dark text for warning and light variants on hover
+    @if $name == "warning" or $name == "light" {
+      color: var(--#{$name}-text, var(--dark, #212529));
+    } @else {
+      color: var(--#{$name}-text, #ffffff);
+    }
   }
 }
 

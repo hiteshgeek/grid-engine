@@ -6,11 +6,7 @@ if (typeof window !== "undefined") {
 
   const toggle_grid_edit = document.querySelector("#toggle_grid_edit");
   const ge_container = document.querySelector(".ge-container");
-
-  // <div class="grid-preview-actions">
-  //   <button class="ge-btn ge-btn-sm ge-btn-warning">Edit</button>
-  //   <button class="ge-btn ge-btn-sm ge-btn-danger">Delete</button>
-  // </div>;
+  const add_layout = document.querySelector("#add_layout");
 
   const preview_actions = document.createElement("div");
   preview_actions.classList.add("grid-preview-actions");
@@ -26,9 +22,26 @@ if (typeof window !== "undefined") {
   preview_actions.appendChild(edit_button);
   preview_actions.appendChild(delete_button);
 
+  if (add_layout) {
+    add_layout.addEventListener("click", () => {
+      createGridEditModal();
+    });
+  }
   if (toggle_grid_edit) {
     toggle_grid_edit.addEventListener("click", () => {
       ge_container.classList.toggle("ge-editable");
+
+      if (ge_container.classList.contains("ge-editable")) {
+        toggle_grid_edit.textContent = "View Mode";
+        toggle_grid_edit.classList.remove("ge-btn-primary");
+        toggle_grid_edit.classList.add("ge-btn-warning");
+        add_layout.classList.remove("hidden");
+      } else {
+        toggle_grid_edit.textContent = "Edit Mode";
+        toggle_grid_edit.classList.remove("ge-btn-warning");
+        toggle_grid_edit.classList.add("ge-btn-primary");
+        add_layout.classList.add("hidden");
+      }
       // Add preview actions to each grid item
       const grid_items = ge_container.querySelectorAll(
         ".ge-row>.ge-col, .ge-row>[class*='ge-col-'], .ge-row>[class^='ge-col-']"
@@ -132,6 +145,7 @@ function createGridEditModal() {
     type: "primary",
     confirmLabel: "Save",
     cancelLabel: "Close",
+    size: "lg",
     onConfirm: () => {
       confirmResult.style.display = "block";
       confirmResult.textContent = "✓ Action completed";

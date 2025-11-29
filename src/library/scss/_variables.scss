@@ -14,14 +14,18 @@
         success: #28a745,
         danger: #dc3545,
         warning: #ffc107,
-        info: #17a2b8,
+        info: #41d6ef,
         light: #f8f9fa,
         dark: #343a40
       )
   {
     --#{$name}: #{$color};
-    --#{$name}-hover: #{color.scale($color, $lightness: 10%)};
-    --#{$name}-text: #{if($name == light, #000, #fff)};
+    --#{$name}-hover: #{color.scale($color, $lightness: -10%)};
+    --#{$name}-text: #{if(
+        $name == light or $name == warning or $name == info,
+        #212529,
+        #fff
+      )};
   }
 
   /* Common Variables */

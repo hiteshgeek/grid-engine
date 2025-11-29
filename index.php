@@ -29,6 +29,7 @@ include_once __DIR__ . '/includes/functions.php';
                         <span>Mode : View</span>
                         <span>
                               <button class='ge-btn ge-btn-sm ge-btn-primary' id='toggle_grid_edit'>Edit Mode</button>
+                              <button class='ge-btn ge-btn-sm ge-btn-primary hidden' id='add_layout'>Add Layout</button>
                         </span>
                   </h4>
                   <hr class="grid-separator" />
