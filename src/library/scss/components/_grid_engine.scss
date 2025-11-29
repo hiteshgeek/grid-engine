@@ -5,7 +5,7 @@
 @use "mixins" as *;
 
 /* ===============================
-   Wrapper (Optional Outer Shell)
+   Wrapper (Optional Outer Layer)
    =============================== */
 .ge-wrapper {
   width: 100%;
@@ -14,54 +14,71 @@
 }
 
 /* ===============================
-   Container (Fluid + Nested Support)
+   Main Grid Container
    =============================== */
 .ge-container {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
   box-sizing: border-box;
+  width: 100px;
+  width: 200px;
+  width: 300px;
+  width: 500px;
+  width: 700px;
+  width: 900px;
   width: 100%;
   padding: 15px;
-
-  /* 💡 Controlled by JS now */
-  row-gap: var(--ge-row-gap, 16px);
+  row-gap: var(--ge-row-gap, 16px); // Controlled by JS
 }
 
 /* ===============================
-   Main Grid Row
+   Main Row Behavior
    =============================== */
 .ge-row {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--ge-gap, 16px);
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
   position: relative;
-
-  /* 💡 Controlled by JS now */
-  gap: var(--ge-gap, 16px);
 }
 
 /* ===============================
-   Nested Rows - Subgrid Supported
+   🔥 Universal Nested Grid Support
    =============================== */
 .ge-col .ge-row,
 [class^="ge-col-"] .ge-row,
 [class*=" ge-col-"] .ge-row {
   display: grid;
-  @supports (grid-template-columns: subgrid) {
-    grid-template-columns: subgrid;
-    grid-column: 1 / -1;
-  }
-  gap: var(--ge-gap, 16px);
+  width: 100%;
   min-width: 0;
   box-sizing: border-box;
   position: relative;
+  gap: var(--ge-gap, 16px); // Inherit gap
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+
+  // @supports (grid-template-columns: subgrid) {
+  //   grid-template-columns: subgrid;
+  //   grid-column: 1 / -1;
+  // }
+}
+
+.ge-col,
+[class^="ge-col-"],
+[class*=" ge-col-"] {
+  &:has(.ge-row > .ge-col),
+  &:has(.ge-row > [class^="ge-col-"]),
+  &:has(.ge-row > [class*=" ge-col-"]) {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
 }
 
 /* ===============================
-   Columns - Core Behavior
+   Core Column Behavior
    =============================== */
 .ge-col,
 [class^="ge-col-"],
@@ -74,7 +91,7 @@
 }
 
 /* ===============================
-   Column Span (Default Desktop)
+   Default Column Spans (Desktop)
    =============================== */
 @for $i from 1 through 12 {
   .ge-col-#{$i} {
@@ -96,7 +113,7 @@
 }
 
 /* ===============================
-   Column Height Utilities
+   Height Utility Classes
    =============================== */
 $base-col-height: 100px;
 @for $i from 1 through 10 {
@@ -106,26 +123,26 @@ $base-col-height: 100px;
 }
 
 /* ===============================
-   XS: Force Stack
+   Auto-stack at XS
    =============================== */
 @include ge-media(xs) {
   .ge-col,
-  [class^="ge-col-"] {
+  [class^="ge-col"] {
     grid-column: span 12 !important;
   }
 }
 
 /* ======================================================
-   DEBUG MODE (Enable with: <body class="ge-debug">)
-   ====================================================== */
+   DEBUG MODE
+====================================================== */
 .ge-debug {
   .ge-col,
   [class^="ge-col"] {
-    border: 1px dashed #ddd;
+    border: 1px dashed #ccc;
   }
 }
 
-/* Hide default labels, show only when .ge-column-info is active */
+/* Hide info by default, show when enabled */
 .col-info {
   display: none;
 }
@@ -134,8 +151,8 @@ $base-col-height: 100px;
 }
 
 /* ======================================================
-   Extra Visual Mode - Debug Colors + Labels
-   ====================================================== */
+   Extra Info Mode (Colors + Labels)
+====================================================== */
 .ge-extra-info {
   .ge-col::before,
   [class^="ge-col-"]::before,
@@ -172,8 +189,8 @@ $base-col-height: 100px;
       }
 
       .ge-col::before,
-      [class^="ge-col"],
-      [class*=" ge-col"]::before {
+      [class^="ge-col-"]::before,
+      [class*=" ge-col-"]::before {
         content: "#{ge-min-width($bp)} < #{$bp} ≤ #{ge-max-width($bp)}";
       }
     }

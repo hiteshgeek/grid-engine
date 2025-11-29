@@ -22,7 +22,31 @@ include_once __DIR__ . '/includes/functions.php';
 <body class=''>
       <div class="ge-container ge-preview">
             <div class="ge-row">
+                  <div class="ge-col-3">
+                        <div class="ge-row">
+                              <div class="ge-col-6"></div>
+                              <div class="ge-col-6"></div>
+                        </div>
+                        <div class="ge-row">
+                              <div class="ge-col-3"></div>
+                              <div class="ge-col-9"></div>
+                        </div>
+                        <div class="ge-row">
+                              <div class="ge-col-9"></div>
+                              <div class="ge-col-3"></div>
+                        </div>
+                  </div>
+                  <div class="ge-col-3">
 
+                  </div>
+                  <div class="ge-col-3">
+
+                  </div>
+                  <div class="ge-col-3">
+
+                  </div>
+            </div>
+            <div class="ge-row">
                   <!-- Left Column -->
                   <div class="ge-col-3 ge-col-lg-4 ge-col-md-6 ge-col-sm-12">
                         <small class='col-info'>[Default:3] [lg:4] [md:6] [sm:12]</small>
