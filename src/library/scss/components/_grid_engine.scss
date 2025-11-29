@@ -73,7 +73,7 @@
   &:has(.ge-row > [class*=" ge-col-"]) {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: inherit;
   }
 }
 
@@ -84,7 +84,7 @@
 [class^="ge-col-"],
 [class*=" ge-col-"] {
   position: relative;
-  min-height: 40px;
+  min-height: 10px;
   min-width: 0;
   box-sizing: border-box;
   overflow: hidden;
@@ -185,7 +185,7 @@ $base-col-height: 100px;
       .ge-col,
       [class^="ge-col"],
       [class*=" ge-col"] {
-        background-color: $color;
+        background-color: $color !important;
       }
 
       .ge-col::before,

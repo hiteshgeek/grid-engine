@@ -16,7 +16,7 @@ body {
 .ge-preview {
   /* Apply background ONLY to columns that do NOT have another .ge-row inside */
   [class^="ge-col-"]:not(:has(.ge-row)) {
-    background: #efefef !important;
+    background-color: #efefef;
     border: 1px solid #ddd;
     border-radius: 4px;
   }
