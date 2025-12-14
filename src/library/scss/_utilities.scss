@@ -1,7 +1,288 @@
+/* ===============================
+   Common Utilities
+   =============================== */
+
+/* ===============================
+   Dark Mode
+   =============================== */
 .dark-mode {
   --light: #222;
   --light-text: #fff;
-
   --dark: #f8f9fa;
   --dark-text: #000;
+}
+
+/* ===============================
+   Text Alignment
+   =============================== */
+.ge-text-left {
+  text-align: left;
+}
+
+.ge-text-center {
+  text-align: center;
+}
+
+.ge-text-right {
+  text-align: right;
+}
+
+/* ===============================
+   Spacing Utilities
+   =============================== */
+$spacers: (
+  0: 0,
+  1: 0.25rem,
+  2: 0.5rem,
+  3: 1rem,
+  4: 1.5rem,
+  5: 3rem,
+);
+
+@each $key, $value in $spacers {
+  /* Margin */
+  .ge-m-#{$key} {
+    margin: $value;
+  }
+  .ge-mt-#{$key} {
+    margin-top: $value;
+  }
+  .ge-mb-#{$key} {
+    margin-bottom: $value;
+  }
+  .ge-ml-#{$key} {
+    margin-left: $value;
+  }
+  .ge-mr-#{$key} {
+    margin-right: $value;
+  }
+  .ge-mx-#{$key} {
+    margin-left: $value;
+    margin-right: $value;
+  }
+  .ge-my-#{$key} {
+    margin-top: $value;
+    margin-bottom: $value;
+  }
+
+  /* Padding */
+  .ge-p-#{$key} {
+    padding: $value;
+  }
+  .ge-pt-#{$key} {
+    padding-top: $value;
+  }
+  .ge-pb-#{$key} {
+    padding-bottom: $value;
+  }
+  .ge-pl-#{$key} {
+    padding-left: $value;
+  }
+  .ge-pr-#{$key} {
+    padding-right: $value;
+  }
+  .ge-px-#{$key} {
+    padding-left: $value;
+    padding-right: $value;
+  }
+  .ge-py-#{$key} {
+    padding-top: $value;
+    padding-bottom: $value;
+  }
+}
+
+/* ===============================
+   Width & Height
+   =============================== */
+.ge-w-25 {
+  width: 25%;
+}
+.ge-w-50 {
+  width: 50%;
+}
+.ge-w-75 {
+  width: 75%;
+}
+.ge-w-100 {
+  width: 100%;
+}
+.ge-w-auto {
+  width: auto;
+}
+
+.ge-h-25 {
+  height: 25%;
+}
+.ge-h-50 {
+  height: 50%;
+}
+.ge-h-75 {
+  height: 75%;
+}
+.ge-h-100 {
+  height: 100%;
+}
+.ge-h-auto {
+  height: auto;
+}
+
+/* ===============================
+   Flex Utilities
+   =============================== */
+.ge-d-flex {
+  display: flex;
+}
+
+.ge-d-inline-flex {
+  display: inline-flex;
+}
+
+.ge-d-block {
+  display: block;
+}
+
+.ge-d-inline-block {
+  display: inline-block;
+}
+
+.ge-d-grid {
+  display: grid;
+}
+
+.ge-flex-row {
+  flex-direction: row;
+}
+
+.ge-flex-column {
+  flex-direction: column;
+}
+
+.ge-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.ge-flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.ge-flex-grow-1 {
+  flex-grow: 1;
+}
+
+.ge-flex-shrink-0 {
+  flex-shrink: 0;
+}
+
+/* ===============================
+   Border Utilities
+   =============================== */
+.ge-border {
+  border: 1px solid #dee2e6;
+}
+
+.ge-border-0 {
+  border: 0;
+}
+
+.ge-rounded {
+  border-radius: 0.25rem;
+}
+
+.ge-rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.ge-rounded-circle {
+  border-radius: 50%;
+}
+
+.ge-rounded-0 {
+  border-radius: 0;
+}
+
+/* ===============================
+   Shadow Utilities
+   =============================== */
+.ge-shadow-none {
+  box-shadow: none;
+}
+
+.ge-shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.ge-shadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.ge-shadow-lg {
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+
+/* ===============================
+   Background Colors
+   =============================== */
+.ge-bg-primary {
+  background-color: var(--primary);
+}
+.ge-bg-secondary {
+  background-color: var(--secondary);
+}
+.ge-bg-success {
+  background-color: var(--success);
+}
+.ge-bg-danger {
+  background-color: var(--danger);
+}
+.ge-bg-warning {
+  background-color: var(--warning);
+}
+.ge-bg-info {
+  background-color: var(--info);
+}
+.ge-bg-light {
+  background-color: var(--light);
+}
+.ge-bg-dark {
+  background-color: var(--dark);
+}
+.ge-bg-white {
+  background-color: #fff;
+}
+.ge-bg-transparent {
+  background-color: transparent;
+}
+
+/* ===============================
+   Text Colors
+   =============================== */
+.ge-text-primary {
+  color: var(--primary);
+}
+.ge-text-secondary {
+  color: var(--secondary);
+}
+.ge-text-success {
+  color: var(--success);
+}
+.ge-text-danger {
+  color: var(--danger);
+}
+.ge-text-warning {
+  color: var(--warning);
+}
+.ge-text-info {
+  color: var(--info);
+}
+.ge-text-light {
+  color: var(--light);
+}
+.ge-text-dark {
+  color: var(--dark);
+}
+.ge-text-white {
+  color: #fff;
+}
+.ge-text-muted {
+  color: #6c757d;
 }

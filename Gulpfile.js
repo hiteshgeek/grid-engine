@@ -223,9 +223,12 @@ gulp.task("watch", function () {
 
 // Default and dev/prod tasks (must be last)
 gulp.task(
-  "dev",
+  "dev_with_watch",
   gulp.series("clean", "styles-clean", "scripts-clean", "watch")
 );
+
+// Default and dev/prod tasks (must be last)
+gulp.task("dev", gulp.series("clean", "styles-clean", "scripts-clean"));
 // Prod task: set NODE_ENV and run the full clean/build without sourcemaps
 gulp.task(
   "prod",

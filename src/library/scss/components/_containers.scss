@@ -1,0 +1,156 @@
+/* ===============================
+   Container Variants
+   =============================== */
+@use "sass:map";
+@use "../mixins" as *;
+
+/* ===============================
+   Fixed-Width Containers
+   =============================== */
+.ge-container-sm {
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ge-container-md {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ge-container-lg {
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ge-container-xl {
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ge-container-xxl {
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ===============================
+   Fluid Container (Full Width)
+   =============================== */
+.ge-container-fluid {
+  width: 100%;
+  max-width: 100%;
+  padding-left: var(--ge-gap, 16px);
+  padding-right: var(--ge-gap, 16px);
+}
+
+/* ===============================
+   Responsive Container
+   Changes max-width at breakpoints
+   =============================== */
+.ge-container-responsive {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--ge-gap, 16px);
+  padding-right: var(--ge-gap, 16px);
+
+  @include ge-media(xxl) {
+    max-width: 1320px;
+  }
+
+  @include ge-media(xl) {
+    max-width: 1140px;
+  }
+
+  @include ge-media(lg) {
+    max-width: 960px;
+  }
+
+  @include ge-media(md) {
+    max-width: 720px;
+  }
+
+  @include ge-media(sm) {
+    max-width: 540px;
+  }
+
+  @include ge-media(xs) {
+    max-width: 100%;
+  }
+}
+
+/* ===============================
+   Gap Size Variants
+   =============================== */
+.ge-gap-none {
+  --ge-gap: 0;
+  --ge-row-gap: 0;
+}
+
+.ge-gap-xs {
+  --ge-gap: 4px;
+  --ge-row-gap: 4px;
+}
+
+.ge-gap-sm {
+  --ge-gap: 8px;
+  --ge-row-gap: 8px;
+}
+
+.ge-gap-md {
+  --ge-gap: 16px;
+  --ge-row-gap: 16px;
+}
+
+.ge-gap-lg {
+  --ge-gap: 24px;
+  --ge-row-gap: 24px;
+}
+
+.ge-gap-xl {
+  --ge-gap: 32px;
+  --ge-row-gap: 32px;
+}
+
+.ge-gap-xxl {
+  --ge-gap: 48px;
+  --ge-row-gap: 48px;
+}
+
+/* Row-only gap */
+.ge-row-gap-none {
+  --ge-row-gap: 0;
+}
+
+.ge-row-gap-sm {
+  --ge-row-gap: 8px;
+}
+
+.ge-row-gap-md {
+  --ge-row-gap: 16px;
+}
+
+.ge-row-gap-lg {
+  --ge-row-gap: 24px;
+}
+
+/* Column-only gap */
+.ge-col-gap-none .ge-row {
+  gap: 0;
+}
+
+.ge-col-gap-sm .ge-row {
+  gap: 8px;
+}
+
+.ge-col-gap-md .ge-row {
+  gap: 16px;
+}
+
+.ge-col-gap-lg .ge-row {
+  gap: 24px;
+}

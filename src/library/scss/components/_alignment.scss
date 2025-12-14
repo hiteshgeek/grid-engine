@@ -1,0 +1,133 @@
+/* ===============================
+   Row Alignment Utilities
+   =============================== */
+@use "sass:map";
+@use "../mixins" as *;
+
+/* ===============================
+   Horizontal Alignment (justify-content)
+   =============================== */
+.ge-row.ge-justify-start {
+  justify-content: start;
+}
+
+.ge-row.ge-justify-center {
+  justify-content: center;
+}
+
+.ge-row.ge-justify-end {
+  justify-content: end;
+}
+
+.ge-row.ge-justify-between {
+  justify-content: space-between;
+}
+
+.ge-row.ge-justify-around {
+  justify-content: space-around;
+}
+
+.ge-row.ge-justify-evenly {
+  justify-content: space-evenly;
+}
+
+/* ===============================
+   Vertical Alignment (align-items)
+   =============================== */
+.ge-row.ge-align-start {
+  align-items: start;
+}
+
+.ge-row.ge-align-center {
+  align-items: center;
+}
+
+.ge-row.ge-align-end {
+  align-items: end;
+}
+
+.ge-row.ge-align-stretch {
+  align-items: stretch;
+}
+
+.ge-row.ge-align-baseline {
+  align-items: baseline;
+}
+
+/* ===============================
+   Individual Column Alignment (align-self)
+   =============================== */
+.ge-align-self-start {
+  align-self: start;
+}
+
+.ge-align-self-center {
+  align-self: center;
+}
+
+.ge-align-self-end {
+  align-self: end;
+}
+
+.ge-align-self-stretch {
+  align-self: stretch;
+}
+
+.ge-align-self-baseline {
+  align-self: baseline;
+}
+
+/* ===============================
+   Responsive Alignment
+   =============================== */
+@each $bp in (xxl, xl, lg, md, sm, xs) {
+  @include ge-media($bp) {
+    /* Horizontal */
+    .ge-row.ge-justify-#{$bp}-start {
+      justify-content: start;
+    }
+    .ge-row.ge-justify-#{$bp}-center {
+      justify-content: center;
+    }
+    .ge-row.ge-justify-#{$bp}-end {
+      justify-content: end;
+    }
+    .ge-row.ge-justify-#{$bp}-between {
+      justify-content: space-between;
+    }
+    .ge-row.ge-justify-#{$bp}-around {
+      justify-content: space-around;
+    }
+    .ge-row.ge-justify-#{$bp}-evenly {
+      justify-content: space-evenly;
+    }
+
+    /* Vertical */
+    .ge-row.ge-align-#{$bp}-start {
+      align-items: start;
+    }
+    .ge-row.ge-align-#{$bp}-center {
+      align-items: center;
+    }
+    .ge-row.ge-align-#{$bp}-end {
+      align-items: end;
+    }
+    .ge-row.ge-align-#{$bp}-stretch {
+      align-items: stretch;
+    }
+
+    /* Self Alignment */
+    .ge-align-self-#{$bp}-start {
+      align-self: start;
+    }
+    .ge-align-self-#{$bp}-center {
+      align-self: center;
+    }
+    .ge-align-self-#{$bp}-end {
+      align-self: end;
+    }
+    .ge-align-self-#{$bp}-stretch {
+      align-self: stretch;
+    }
+  }
+}

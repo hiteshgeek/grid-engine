@@ -1,0 +1,23 @@
+/* ===============================
+   Column Offset Utilities
+   =============================== */
+@use "sass:map";
+@use "../mixins" as *;
+
+/* Base Offsets (Desktop) */
+@for $i from 0 through 11 {
+  .ge-offset-#{$i} {
+    margin-left: calc(#{$i} / 12 * 100%);
+  }
+}
+
+/* Responsive Offsets */
+@each $bp in (xxl, xl, lg, md, sm, xs) {
+  @include ge-media($bp) {
+    @for $i from 0 through 11 {
+      .ge-offset-#{$bp}-#{$i} {
+        margin-left: calc(#{$i} / 12 * 100%);
+      }
+    }
+  }
+}

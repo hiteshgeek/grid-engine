@@ -1,0 +1,39 @@
+/* ===============================
+   Column Order Utilities
+   =============================== */
+@use "sass:map";
+@use "../mixins" as *;
+
+/* Base Order Classes */
+.ge-order-first {
+  order: -1;
+}
+
+.ge-order-last {
+  order: 13;
+}
+
+@for $i from 0 through 12 {
+  .ge-order-#{$i} {
+    order: #{$i};
+  }
+}
+
+/* Responsive Order Classes */
+@each $bp in (xxl, xl, lg, md, sm, xs) {
+  @include ge-media($bp) {
+    .ge-order-#{$bp}-first {
+      order: -1;
+    }
+
+    .ge-order-#{$bp}-last {
+      order: 13;
+    }
+
+    @for $i from 0 through 12 {
+      .ge-order-#{$bp}-#{$i} {
+        order: #{$i};
+      }
+    }
+  }
+}

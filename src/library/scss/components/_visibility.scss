@@ -1,0 +1,94 @@
+/* ===============================
+   Responsive Visibility Utilities
+   =============================== */
+@use "sass:map";
+@use "../mixins" as *;
+
+/* ===============================
+   Display Utilities (Base)
+   =============================== */
+.ge-hidden {
+  display: none !important;
+}
+
+.ge-visible {
+  display: block !important;
+}
+
+.ge-invisible {
+  visibility: hidden !important;
+}
+
+/* ===============================
+   Responsive Hidden Classes
+   Hide at specific breakpoint and below
+   =============================== */
+@each $bp in (xxl, xl, lg, md, sm, xs) {
+  @include ge-media($bp) {
+    .ge-hidden-#{$bp} {
+      display: none !important;
+    }
+  }
+}
+
+/* ===============================
+   Responsive Visible Classes
+   Show only at specific breakpoint
+   =============================== */
+.ge-visible-xxl,
+.ge-visible-xl,
+.ge-visible-lg,
+.ge-visible-md,
+.ge-visible-sm,
+.ge-visible-xs {
+  display: none !important;
+}
+
+@include ge-media(xxl) {
+  .ge-visible-xxl {
+    display: block !important;
+  }
+}
+
+@include ge-media(xl) {
+  .ge-visible-xl {
+    display: block !important;
+  }
+}
+
+@include ge-media(lg) {
+  .ge-visible-lg {
+    display: block !important;
+  }
+}
+
+@include ge-media(md) {
+  .ge-visible-md {
+    display: block !important;
+  }
+}
+
+@include ge-media(sm) {
+  .ge-visible-sm {
+    display: block !important;
+  }
+}
+
+@include ge-media(xs) {
+  .ge-visible-xs {
+    display: block !important;
+  }
+}
+
+/* ===============================
+   Print Utilities
+   =============================== */
+@media print {
+  .ge-hidden-print {
+    display: none !important;
+  }
+
+  .ge-visible-print {
+    display: block !important;
+  }
+}
